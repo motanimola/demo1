@@ -40,5 +40,5 @@ aws/testdata/service/cloudformation/examplecompany-exampleservice-exampleresourc
 /.vs
 node_modules
 tf_key.pem
-pre-commit-hook.sh
-.pre-commit-hook.sh
+# pre-commit-hook.sh
+# .pre-commit-hook.sh
