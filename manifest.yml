@@ -1,0 +1,46 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: pythonweb
+  annotations:
+    runterrascan.io/skip: "[{\"rule\":\"AC_AWS_0369\"},{\"rule\":\"AC_AWS_0002\"},{\"rule\":\"AC_AWS_0085\"},{\"rule\":\"AC_AWS_0087\"},{\"rule\":\"AC_AWS_0073\"},{\"rule\":\"AC_AWS_0078\"},{\"rule\":\"AC_AWS_0080\"},{\"rule\":\"AC_AWS_0064\"},{\"rule\":\"AC_AWS_0069\"},{\"rule\":\"AC_AWS_0097\"},{\"rule\":\"AC_AWS_0099\"},{\"rule\":\"AC_AWS_0098\"},{\"rule\":\"AC_AWS_0100\"},{\"rule\":\"AC_AWS_0068\"},{\"rule\":\"AC_AWS_0070\"},{\"rule\":\"AC_AWS_0072\"},{\"rule\":\"AC_AWS_0114\"},{\"rule\":\"AC_AWS_0465\"}]"
+spec:
+  selector:
+    matchLabels:
+      app: pythonweb
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+
+  template:
+    metadata:
+      labels:
+        app: pythonweb
+    spec:
+      containers:
+      - name: pythonweb
+        #image: 468073541948.dkr.ecr.us-east-1.amazonaws.com/python-app1:0.1.1.15  
+        image: motany/pythonapp
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pythonweb-svc
+  labels:
+    app: pythonweb
+  # annotations:
+  #   runterrascan.io/skip: "[{\"rule\":\"AC_AWS_0369\"},{\"rule\":\"AC_AWS_0002\"},{\"rule\":\"AC_AWS_0085\"},{\"rule\":\"AC_AWS_0087\"},{\"rule\":\"AC_AWS_0073\"},{\"rule\":\"AC_AWS_0078\"},{\"rule\":\"AC_AWS_0080\"},{\"rule\":\"AC_AWS_0064\"},{\"rule\":\"AC_AWS_0069\"},{\"rule\":\"AC_AWS_0097\"},{\"rule\":\"AC_AWS_0099\"},{\"rule\":\"AC_AWS_0098\"},{\"rule\":\"AC_AWS_0100\"},{\"rule\":\"AC_AWS_0068\"},{\"rule\":\"AC_AWS_0070\"},{\"rule\":\"AC_AWS_0072\"},{\"rule\":\"AC_AWS_0114\"},{\"rule\":\"AC_AWS_0465\"}]"
+spec:
+  selector:
+    app: pythonweb
+  type: LoadBalancer
+  ports:
+    - port: 5000
+      targetPort: 5000
+     
