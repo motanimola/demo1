@@ -34,6 +34,7 @@ aws/testdata/service/cloudformation/examplecompany-exampleservice-exampleresourc
 # Test exclusions
 !command/test-fixtures/**/*.tfstate
 !command/test-fixtures/**/.terraform/
+token
 
 # Keep windows files with windows line endings
 *.winfile eol=crlf
