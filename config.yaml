@@ -1,0 +1,26 @@
+rules: 
+
+  skip-rules:
+     - AC_AWS_0369
+     - AC_K8S_0002
+     - AC_K8S_0085
+     - AC_K8S_0087
+     - AC_K8S_0073
+     - AC_K8S_0078
+     - AC_K8S_0080
+     - AC_K8S_0064
+     - AC_K8S_0069
+     - AC_K8S_0097
+     - AC_K8S_0099
+     - AC_K8S_0098
+     - AC_K8S_0100
+     - AC_K8S_0068
+     - AC_K8S_0070
+     - AC_K8S_0072
+     - AC_K8S_0114
+     - AC_AWS_0465
+     - AWS.VPC.Logging.Medium.0470
+     - AC_AWS_0457
+     - AC_AWS_0497
+     - AC_AWS_0207
+     - AC_AWS_0458
