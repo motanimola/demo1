@@ -1,13 +1,10 @@
 repos:
  - repo: https://github.com/accurics/terrascan
-  # - repo: https://github.com/antonbabenko/pre-commit-terraform
-  
    rev: v1.12.0
-    # rev: v1.50.0
    hooks:
           - id: terraform-pre-commit   
             name: terrascan
             description: Runs terrascan on supported IaC templates.
             language: script
             entry: scripts/pre-commit-hook.sh
-            args: ['-i k8s -c config.yml']
+            args: ['-i terraform -c config.yml']
